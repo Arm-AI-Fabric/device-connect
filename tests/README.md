@@ -1,9 +1,9 @@
 # Device Connect Integration Tests
 
 Cross-repo integration tests for the Device Connect platform. Validates that
-[device-connect-sdk](https://github.com/arm/device-connect-sdk),
-[device-connect-server](https://github.com/arm/device-connect-server), and
-[device-connect-agent-tools](https://github.com/arm/device-connect-agent-tools)
+[device-connect-sdk](../packages/device-connect-sdk/),
+[device-connect-server](../packages/device-connect-server/), and
+[device-connect-agent-tools](../packages/device-connect-agent-tools/)
 work together end-to-end.
 
 ## Architecture
@@ -52,11 +52,8 @@ The `infrastructure` session-scoped fixture manages the lifecycle automatically.
 Clone all repos as siblings:
 
 ```
-mkdir device-connect && cd device-connect
-git clone https://github.com/arm/device-connect-sdk.git
-git clone https://github.com/arm/device-connect-server.git
-git clone https://github.com/arm/device-connect-agent-tools.git
-git clone https://github.com/arm/device-connect-tests.git
+git clone https://github.com/arm/device-connect.git
+cd device-connect
 ```
 
 ## Setup
@@ -66,9 +63,9 @@ cd device-connect-tests
 python -m venv .venv && source .venv/bin/activate
 
 # Install all packages in editable mode
-pip install -e ../device-connect-sdk
-pip install -e "../device-connect-server[all]"
-pip install -e "../device-connect-agent-tools[strands]"
+pip install -e ../packages/device-connect-sdk
+pip install -e "../packages/device-connect-server[all]"
+pip install -e "../packages/device-connect-agent-tools[strands]"
 pip install -r requirements.txt
 ```
 

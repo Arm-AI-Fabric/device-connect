@@ -37,7 +37,7 @@ Lightweight Python SDK for building Device Connect edge devices. You write the d
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-pip install git+https://github.com/arm/device-connect-sdk.git
+pip install "device-connect-sdk @ git+https://github.com/arm/device-connect.git#subdirectory=packages/device-connect-sdk"
 ```
 
 ## Decorators
@@ -133,7 +133,7 @@ DEVICE_CONNECT_ALLOW_INSECURE=true ZENOH_CONNECT=tcp/localhost:7447 python my_se
 | [`examples/string_generator/`](examples/string_generator/) | Simulated random word fragment generator with mood themes |
 | [`examples/dht22_sensor/`](examples/dht22_sensor/) | Real DHT22 temperature/humidity sensor on Raspberry Pi |
 
-> **Real hardware drivers** run as a Python process on the physical device and require credentials provisioned by [device-connect-server](https://github.com/arm/device-connect-server).
+> **Real hardware drivers** run as a Python process on the physical device and require credentials provisioned by [device-connect-server](../device-connect-server/).
 
 ```bash
 # Real hardware (on the device)
@@ -182,7 +182,7 @@ DEVICE_CONNECT_DISCOVERY_MODE=p2p ZENOH_CONNECT=tcp/localhost:7447 DEVICE_CONNEC
 
 ## Credentials
 
-Credentials are generated server-side using device-connect-server's provisioning tools. See [device-connect-server — Device Commissioning](https://github.com/arm/device-connect-server#device-commissioning-flow).
+Credentials are generated server-side using device-connect-server's provisioning tools. See [device-connect-server — Device Commissioning](../device-connect-server/README.md#device-commissioning-flow).
 
 The credentials file is JSON with JWT and NKey seed:
 
@@ -224,12 +224,12 @@ For development without auth, set `DEVICE_CONNECT_ALLOW_INSECURE=true` or pass `
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-pip install "device-connect-sdk[dev] @ git+https://github.com/arm/device-connect-sdk.git"
+pip install -e ".[dev]"
 pytest tests/ -v --timeout=30
 ```
 
-Unit tests run without external services. Integration tests are in [device-connect-tests](https://github.com/arm/device-connect-tests).
+Unit tests run without external services. Integration tests are in [tests/](../../tests/).
 
 ## Contributing
 
-We welcome contributions! Please open an [issue](https://github.com/arm/device-connect-sdk/issues) to report bugs or suggest features, or submit a [pull request](https://github.com/arm/device-connect-sdk/pulls) directly.
+We welcome contributions! Please open an [issue](https://github.com/arm/device-connect/issues) to report bugs or suggest features, or submit a [pull request](https://github.com/arm/device-connect/pulls) directly.

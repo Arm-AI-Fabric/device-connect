@@ -4,7 +4,7 @@
 
 # device-connect-server
 
-Server-side runtime for the Device Connect IoT framework. Extends [device-connect-sdk](https://github.com/arm/device-connect-sdk) with device registry, security (commissioning, ACLs), distributed state, audit logging, and CLI tools.
+Server-side runtime for the Device Connect IoT framework. Extends [device-connect-sdk](../device-connect-sdk/) with device registry, security (commissioning, ACLs), distributed state, audit logging, and CLI tools.
 
 ## Contents
 
@@ -36,8 +36,8 @@ Server-side runtime for the Device Connect IoT framework. Extends [device-connec
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-pip install git+https://github.com/arm/device-connect-sdk.git
-pip install "device-connect-server[all] @ git+https://github.com/arm/device-connect-server.git"
+pip install -e "../device-connect-sdk"
+pip install -e ".[all]"
 ```
 
 This pulls in `device-connect-sdk` automatically. Optional extras:
@@ -62,8 +62,7 @@ The registry service Docker image builds from both `device-connect-server` and `
 
 ```bash
 cd ..
-git clone https://github.com/arm/device-connect-sdk.git
-cd device-connect-server
+# SDK is a sibling package in the monorepo
 ```
 
 Choose a deployment mode:
@@ -237,7 +236,7 @@ rm -rf device-connect-server/security_infra/.nsc device-connect-server/security_
 rm -f device-connect-server/security_infra/*.pem device-connect-server/security_infra/*.srl
 ```
 
-See [device-connect-sdk — Credentials](https://github.com/arm/device-connect-sdk#credentials) for the credentials file format.
+See [device-connect-sdk — Credentials](../device-connect-sdk/README.md#credentials) for the credentials file format.
 
 ## CLI Tools
 
@@ -290,21 +289,21 @@ Operator: dc-operator              (trust root)
        └─ User: my-agent            (AI agent, via --user)
 ```
 
-See [device-connect-sdk — Credentials](https://github.com/arm/device-connect-sdk#credentials) for how devices consume credentials at runtime.
+See [device-connect-sdk — Credentials](../device-connect-sdk/README.md#credentials) for how devices consume credentials at runtime.
 
-AI agents connecting via [device-connect-agent-tools](https://github.com/arm/device-connect-agent-tools) also need their own credentials: `./security_infra/gen_creds.sh --user my-agent` (NATS) or `./security_infra/generate_tls_certs.sh --client my-agent` (Zenoh).
+AI agents connecting via [device-connect-agent-tools](../device-connect-agent-tools/) also need their own credentials: `./security_infra/gen_creds.sh --user my-agent` (NATS) or `./security_infra/generate_tls_certs.sh --client my-agent` (Zenoh).
 
 ## Testing
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-pip install "device-connect-server[all] @ git+https://github.com/arm/device-connect-server.git"
+pip install -e ".[all]"
 pytest tests/ -v --timeout=30
 ```
 
-Unit tests run without external services. Integration tests are in [device-connect-tests](https://github.com/arm/device-connect-tests).
+Unit tests run without external services. Integration tests are in [tests/](../../tests/).
 
 ## Contributing
 
-We welcome contributions! Please open an [issue](https://github.com/arm/device-connect-server/issues) to report bugs or suggest features, or submit a [pull request](https://github.com/arm/device-connect-server/pulls) directly.
+We welcome contributions! Please open an [issue](https://github.com/arm/device-connect/issues) to report bugs or suggest features, or submit a [pull request](https://github.com/arm/device-connect/pulls) directly.
