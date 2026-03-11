@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "device-connect-agent-tools"
+version = "0.1.0"
+description = "Framework-agnostic tools for Device Connect — discover and invoke IoT devices over NATS/Zenoh"
+requires-python = ">=3.11"
+dependencies = [
+    "device-connect-sdk[zenoh]>=0.1.0",
+]
+
+[project.optional-dependencies]
+strands = ["strands-agents>=1.0"]
+langchain = ["langchain-core>=0.2"]
+mcp = ["fastmcp>=1.0"]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "pytest-timeout>=2.0",
+]
